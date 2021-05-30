@@ -4,17 +4,20 @@ const cors = require('cors');
 
 // Constants
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-app.get('/', (_req, res) => {
+app.get('/', (req, res) => {
 	res.send('<p>Connected!</p>');
+});
+
+app.post('/sign-up', (req, res) => {
+	console.log(req.body);
 });
 
 // Start server
