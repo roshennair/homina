@@ -42,7 +42,7 @@ app.use(session({
 	secret: SESSION_SECRET,
 	cookie: {
 		maxAge: SESSION_LIFETIME,
-		sameSite: true,
+		sameSite: 'none',
 		secure: IN_PROD
 	},
 	store: new RedisStore({ client: redisClient })
