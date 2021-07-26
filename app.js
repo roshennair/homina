@@ -45,6 +45,10 @@ app.use(session({
 }));
 
 // Routes
+app.get('/', (req, res) => {
+	res.json({ message: 'Welcome to the Homina server' });
+});
+
 app.post('/signup', async (req, res) => {
 	const { name, email, username, password } = req.body;
 
