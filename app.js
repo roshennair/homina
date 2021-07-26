@@ -17,7 +17,8 @@ const {
 	SESSION_NAME = 'sid',
 	SESSION_LIFETIME = TWO_HOURS,
 	SESSION_SECRET = 'd47e3ac2-1fc5-4d99-9c55-de055d38e302',
-	SALT_ROUNDS = 10
+	SALT_ROUNDS = 10,
+	CLIENT_ADDRESSES = 'http://localhost:3000'
 } = process.env;
 const IN_PROD = NODE_ENV === 'production';
 const users = []; // TODO: Replace with DB
@@ -29,7 +30,10 @@ const redisClient = redis.createClient(REDIS_URL);
 
 // Middleware
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors({
+	credentials: true,
+	origin: CLIENT_ADDRESSES.split(',')
+}));
 app.use(express.json());
 app.use(session({
 	name: SESSION_NAME,
