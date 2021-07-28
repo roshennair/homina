@@ -21,6 +21,7 @@ const {
 	CLIENT_ADDRESSES = 'http://localhost:3000'
 } = process.env;
 const IN_PROD = NODE_ENV === 'production';
+const ALLOWED_ORIGINS = CLIENT_ADDRESSES.split(',')
 const users = []; // TODO: Replace with DB
 
 // Initializations
@@ -31,7 +32,7 @@ const redisClient = redis.createClient(REDIS_URL);
 // Middleware
 app.use(morgan('dev'));
 app.use(cors({
-	origin: CLIENT_ADDRESSES.split(','),
+	origin: ALLOWED_ORIGINS,
 	credentials: true
 }));
 app.use(express.json());
