@@ -31,8 +31,8 @@ const redisClient = redis.createClient(REDIS_URL);
 // Middleware
 app.use(morgan('dev'));
 app.use(cors({
-	credentials: true,
-	origin: CLIENT_ADDRESSES.split(',')
+	origin: CLIENT_ADDRESSES.split(','),
+	credentials: true
 }));
 app.use(express.json());
 app.use(session({
