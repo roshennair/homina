@@ -21,20 +21,19 @@ const {
 	CLIENT_ADDRESSES = 'http://localhost:3000'
 } = process.env;
 const IN_PROD = NODE_ENV === 'production';
-const ALLOWED_ORIGINS = CLIENT_ADDRESSES.split(',')
 const users = []; // TODO: Replace with DB
 
 // Initializations
 const app = express();
+app.set("trust proxy", 1);
 const RedisStore = connectRedis(session);
 const redisClient = redis.createClient(REDIS_URL);
 
 // Middleware
 app.use(morgan('dev'));
 app.use(cors({
-	origin: ALLOWED_ORIGINS,
+	origin: CLIENT_ADDRESSES.split(','),
 	credentials: true,
-	allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
 }));
 app.use(express.json());
 app.use(session({
@@ -44,7 +43,7 @@ app.use(session({
 	secret: SESSION_SECRET,
 	cookie: {
 		maxAge: SESSION_LIFETIME,
-		sameSite: 'none',
+		sameSite: IN_PROD ? 'none' : 'lax',
 		secure: IN_PROD
 	},
 	store: new RedisStore({ client: redisClient })
