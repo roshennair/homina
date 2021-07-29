@@ -33,7 +33,8 @@ const redisClient = redis.createClient(REDIS_URL);
 app.use(morgan('dev'));
 app.use(cors({
 	origin: ALLOWED_ORIGINS,
-	credentials: true
+	credentials: true,
+	allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
 }));
 app.use(express.json());
 app.use(session({
