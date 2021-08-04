@@ -43,7 +43,7 @@ const SignUp = () => {
 			</div>
 			{error && <ErrorMessage error={error} hideError={() => setError('')} />}
 			<div className="form-body">
-				<form className="form" method="post" onSubmit={handleSubmit}>
+				<form method="post" onSubmit={handleSubmit}>
 					<label htmlFor="name">Name</label>
 					<input type="text" name="name" id="name" required value={formValues.name} onChange={handleChange} />
 
@@ -56,7 +56,7 @@ const SignUp = () => {
 					<label htmlFor="password">Password</label>
 					<input type="password" name="password" id="password" required value={formValues.password} onChange={handleChange} />
 
-					<input className="primary form-submit" type="submit" value="Sign Up" />
+					<input className="primary" type="submit" value="Sign Up" />
 				</form>
 			</div >
 			<div className="form-foot">

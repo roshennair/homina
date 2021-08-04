@@ -1,9 +1,16 @@
 import React from 'react';
 import { useAuth } from '../contexts/authContext';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Home = () => {
-	const { currentUser } = useAuth();
+	const { currentUser, logout } = useAuth();
+	const history = useHistory();
+
+	const handleLogout = async (event) => {
+		event.preventDefault();
+		await logout();
+		history.push('/login');
+	}
 
 	return (
 		<div>
@@ -12,6 +19,9 @@ const Home = () => {
 					<p><strong>Name:</strong> {currentUser.name}</p>
 					<p><strong>Email address:</strong> {currentUser.email}</p>
 					<p><strong>Username:</strong> {currentUser.username}</p>
+					<form method="POST" onSubmit={handleLogout}>
+						<input className="primary" type="submit" value="Log out" />
+					</form>
 				</>
 			) : (
 				<>
