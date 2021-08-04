@@ -5,7 +5,8 @@
 	"main": "server.js",
 	"scripts": {
 		"dev": "nodemon server.js",
-		"start": "node server.js"
+		"start": "node server.js",
+		"build": "cd client && npm install && npm run build"
 	},
 	"author": "Roshen Nair",
 	"license": "ISC",
