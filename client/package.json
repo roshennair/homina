@@ -1,5 +1,5 @@
 {
-	"name": "homina-web-client",
+	"name": "homina-client",
 	"version": "0.1.0",
 	"description": "Homina frontend web client",
 	"dependencies": {
