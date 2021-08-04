@@ -1,7 +1,7 @@
 {
-	"name": "homina-server",
+	"name": "homina",
 	"version": "1.0.0",
-	"description": "Homina REST API & backend server",
+	"description": "A full-stack web application that stores your contacts",
 	"main": "server.js",
 	"scripts": {
 		"dev": "nodemon server.js",

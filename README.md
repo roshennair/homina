@@ -1,8 +1,9 @@
-# Homina Server
+# Homina
 
-This repository contains all of the code for Homina's REST API & backend server. Here is an overview of Homina's server architecture:
+This repository contains the source code for Homina, a full-stack contacts storage web application. Here is an overview of Homina's server architecture:
 
-- Web server: Node.js and Express
-- Relational database: PostgreSQL
+- Client: React
+- Server: Node.js and Express
 - Session storage: Redis
-- Backend hosting: Heroku
+- Relational database: PostgreSQL
+- Hosting: Heroku
