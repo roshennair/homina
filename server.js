@@ -41,14 +41,14 @@ app.use(session({
 	},
 	store: new RedisStore({ client: redisClient })
 }));
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '/client/build')));
 
 // Authentication routes
 app.use('/auth', authRoutes);
 
 // Serve client
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, '../client/build/index.html'));
+	res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
 // Start server
