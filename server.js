@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const redis = require('redis');
 const connectRedis = require('connect-redis');
 require('express-async-errors');
-const authRoutes = require('./routes/auth');
+const authRouter = require('./routes/auth');
 
 // Constants
 const TWO_HOURS = 1000 * 60 * 60 * 2;
@@ -43,8 +43,8 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, '/client/build')));
 
-// Authentication routes
-app.use('/auth', authRoutes);
+// Mount authentication routes
+app.use('/auth', authRouter);
 
 // Serve client
 app.get('*', (req, res) => {
