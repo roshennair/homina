@@ -1,12 +1,19 @@
-const bcrypt = require('bcryptjs');
-const db = require('../db');
+import bcrypt from 'bcryptjs';
+import db from '../db';
+import { Request, Response } from 'express';
 
 const {
 	SESSION_NAME = 'sid',
 	SALT_ROUNDS = 10
 } = process.env;
 
-const signup = async (req, res) => {
+declare module 'express-session' {
+	export interface SessionData {
+		userId: string | null;
+	}
+}
+
+const signup = async (req: Request, res: Response) => {
 	const { name, email, username, password } = req.body;
 
 	if (name && email && username && password) {
@@ -18,7 +25,7 @@ const signup = async (req, res) => {
 
 		// Hash password and add new user
 		const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
-		const newUser = await db.addUser(username, email, name, hashedPassword);
+		const newUser = (await db.addUser(username, email, name, hashedPassword))!;
 
 		// Set session cookie and return new user 
 		req.session.userId = newUser.id;
@@ -32,7 +39,7 @@ const signup = async (req, res) => {
 	}
 }
 
-const login = async (req, res) => {
+const login = async (req: Request, res: Response) => {
 	const { username, password } = req.body;
 
 	if (username && password) {
@@ -53,7 +60,7 @@ const login = async (req, res) => {
 	}
 }
 
-const logout = async (req, res) => {
+const logout = async (req: Request, res: Response) => {
 	req.session.destroy(err => {
 		if (err) return res.status(500).json({ message: 'Error logging out.' });
 		res.clearCookie(SESSION_NAME);
@@ -61,4 +68,4 @@ const logout = async (req, res) => {
 	});
 }
 
-module.exports = { signup, login, logout };
+export default { signup, login, logout };

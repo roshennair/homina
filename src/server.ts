@@ -1,12 +1,12 @@
 // Imports
-const express = require('express');
-const path = require('path');
-const session = require('express-session');
-const morgan = require('morgan');
-const redis = require('redis');
-const connectRedis = require('connect-redis');
-require('express-async-errors');
-const authRouter = require('./routes/auth');
+import express from 'express';
+import path from 'path';
+import session from 'express-session';
+import morgan from 'morgan';
+import redis from 'redis';
+import connectRedis from 'connect-redis';
+import 'express-async-errors';
+import authRouter from './routes/auth';
 
 // Constants
 const TWO_HOURS = 1000 * 60 * 60 * 2;
@@ -35,20 +35,20 @@ app.use(session({
 	saveUninitialized: false,
 	secret: SESSION_SECRET,
 	cookie: {
-		maxAge: SESSION_LIFETIME,
+		maxAge: +SESSION_LIFETIME,
 		sameSite: true,
 		secure: IN_PROD
 	},
 	store: new RedisStore({ client: redisClient })
 }));
-app.use(express.static(path.join(__dirname, '/client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Mount authentication routes
 app.use('/auth', authRouter);
 
 // Serve client
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, '/client/build/index.html'));
+	res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
 // Start server
