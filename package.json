@@ -4,9 +4,10 @@
 	"description": "A full-stack web application that stores your contacts",
 	"main": "server.js",
 	"scripts": {
-		"dev": "nodemon server.js",
-		"start": "node server.js",
-		"build": "cd client && npm install && npm run build"
+		"dev": "tsnd --respawn -T src/server.ts",
+		"build": "tsc && npm run build-client",
+		"build-client": "mv -i -v client dist/ && cd dist/client && npm install && npm run build",
+		"start": "node dist/server.js"
 	},
 	"author": "Roshen Nair",
 	"license": "ISC",
@@ -22,6 +23,19 @@
 		"redis": "^3.1.2"
 	},
 	"devDependencies": {
-		"nodemon": "^2.0.7"
+		"@types/bcryptjs": "^2.4.2",
+		"@types/connect-redis": "^0.0.17",
+		"@types/express": "^4.17.13",
+		"@types/express-session": "^1.17.4",
+		"@types/morgan": "^1.9.3",
+		"@types/node": "^16.4.13",
+		"@types/pg": "^8.6.1",
+		"@types/redis": "^2.8.31",
+		"nodemon": "^2.0.7",
+		"ts-node-dev": "^1.1.8",
+		"typescript": "^4.3.5"
+	},
+	"engines": {
+		"node": "16.6.1"
 	}
 }
