@@ -5,7 +5,7 @@
 	"main": "server.js",
 	"scripts": {
 		"dev": "tsnd --respawn -T src/server.ts",
-		"build": "tsc && rm -rf src npm run build-client",
+		"build": "tsc && rm -rf src && npm run build-client",
 		"build-client": "mv -i -v client dist/ && cd dist/client && npm install && npm run build",
 		"start": "node dist/server.js"
 	},
