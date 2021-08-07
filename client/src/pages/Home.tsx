@@ -1,12 +1,12 @@
-import React from 'react';
+import { FormEventHandler, FC } from 'react';
 import { useAuth } from '../contexts/authContext';
 import { Link, useHistory } from 'react-router-dom';
 
-const Home = () => {
+const Home: FC = () => {
 	const { currentUser, logout } = useAuth();
 	const history = useHistory();
 
-	const handleLogout = async (event) => {
+	const handleLogout: FormEventHandler<HTMLFormElement> = async (event) => {
 		event.preventDefault();
 		await logout();
 		history.push('/login');

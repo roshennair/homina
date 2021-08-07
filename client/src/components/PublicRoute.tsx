@@ -1,18 +1,20 @@
-import React from 'react';
+import { FC } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
 
-const PublicRoute = ({ component: Component, ...rest }) => {
+interface Props {
+	component: FC;
+	[key: string]: any;
+}
+
+const PublicRoute: FC<Props> = ({ component: Component, ...rest }) => {
 	const { currentUser } = useAuth();
 
 	// Redirects to home page if user is already logged in
 	return (
 		<Route
 			{...rest}
-			render={props => (
-				currentUser
-					? <Redirect to="/" />
-					: <Component {...props} />)}
+			render={() => currentUser ? <Redirect to="/" /> : <Component />}
 		/>
 	)
 }

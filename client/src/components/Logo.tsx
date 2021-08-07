@@ -1,6 +1,11 @@
-import React from 'react';
+import { FC } from 'react';
 
-const Logo = ({ height, fillColor }) => {
+interface Props {
+	height?: number;
+	fillColor?: string;
+}
+
+const Logo: FC<Props> = ({ height, fillColor }) => {
 	return (
 		<svg
 			viewBox="0 0 630 630"
