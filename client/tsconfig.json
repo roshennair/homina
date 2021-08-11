@@ -37,6 +37,7 @@
 		"build"
 	],
 	"include": [
-		"src"
+		"src",
+		"@types"
 	]
 }
