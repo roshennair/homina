@@ -1,12 +1,12 @@
 import { FC, useState, ChangeEventHandler, FormEventHandler } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import SignUpCredentials from '../interfaces/SignUpCredentials.interface';
+import SignUpForm from '../interfaces/SignUpForm.interface';
 import { useAuth } from '../contexts/authContext';
 import Logo from '../components/Logo';
 import ErrorMessage from '../components/ErrorMessage';
 
 const SignUp: FC = () => {
-	const [formValues, setFormValues] = useState<SignUpCredentials>({
+	const [formValues, setFormValues] = useState<SignUpForm>({
 		name: '',
 		email: '',
 		username: '',

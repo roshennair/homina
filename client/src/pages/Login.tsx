@@ -3,10 +3,10 @@ import { useAuth } from '../contexts/authContext';
 import Logo from '../components/Logo';
 import ErrorMessage from '../components/ErrorMessage';
 import { Link, useHistory } from 'react-router-dom';
-import LoginCredentials from '../interfaces/LoginCredentials.interface';
+import LoginForm from '../interfaces/LoginForm.interface';
 
 const Login: FC = () => {
-	const [formValues, setFormValues] = useState<LoginCredentials>({
+	const [formValues, setFormValues] = useState<LoginForm>({
 		username: '',
 		password: ''
 	});
@@ -46,7 +46,10 @@ const Login: FC = () => {
 					<label htmlFor="username">Username or email address</label>
 					<input type="text" name="username" id="username" required value={formValues.username} onChange={handleChange} />
 
-					<label htmlFor="password">Password</label>
+					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+						<label htmlFor="password">Password</label>
+						<Link to="/forgot-password">Forgot password?</Link>
+					</div>
 					<input type="password" name="password" id="password" required value={formValues.password} onChange={handleChange} />
 
 					<input className="primary" type="submit" value="Login" />

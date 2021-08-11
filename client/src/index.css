@@ -9,6 +9,9 @@
 	--homina-red: #FB4343;
 	--homina-light-red: #ff9797;
 	--homina-focus-red: #fb43433f;
+	--homina-green: #3fff2d;
+	--homina-light-green: #a0ff97;
+	--homina-focus-green: #49fb433f;
     --button-hover: #fbda60;
     --button-focus: #bb9920;
 }
@@ -43,7 +46,7 @@ a:focus {
 
 /* Labels */
 label {
-	display: block;
+	display: inline-block;
 }
 
 /* Inputs */
@@ -92,21 +95,36 @@ input.primary:disabled {
     color: var(--homina-grey);
 }
 
-/* Error message */
-.error {
+/* Messages */
+.error, .success {
 	padding: 10px 20px 10px 10px;
 	margin-bottom: 20px;
 	width: 100%;
 	display: flex;
+	border-radius: 6px;
 	justify-content: space-between;
+}
+
+/* Error message */
+.error {
 	background: var(--homina-focus-red);
 	border: 1px solid var(--homina-red);
-	border-radius: 6px;
 	color: var(--homina-light-red);
 }
 
 .error a {
 	color: var(--homina-light-red);
+}
+
+/* Success message */
+.success {	
+	background: var(--homina-focus-green);
+	border: 1px solid var(--homina-green);
+	color: var(--homina-light-green);
+}
+
+.success a {
+	color: var(--homina-light-green);
 }
 
 /* Forms */
@@ -159,7 +177,7 @@ input.primary:disabled {
         align-items: center;
     }
 
-	.error {
+	.error, .success {
 		width: 400px;
 	}
 

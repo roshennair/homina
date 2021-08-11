@@ -6,6 +6,8 @@ import PublicRoute from './components/PublicRoute';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 const App: FC = () => {
 	return (
@@ -15,6 +17,8 @@ const App: FC = () => {
 					<PrivateRoute exact path='/' component={Home} />
 					<PublicRoute path='/signup' component={SignUp} />
 					<PublicRoute path='/login' component={Login} />
+					<PublicRoute path='/forgot-password' component={ForgotPassword} />
+					<PublicRoute path='/reset-password' component={ResetPassword} />
 				</Switch>
 			</Router>
 		</AuthProvider>
